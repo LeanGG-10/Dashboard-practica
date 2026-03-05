@@ -1,32 +1,34 @@
-import { supabase } from "../supabaseClient";
-
+import { authApi } from "../apis/supabase/authApi";
 
 export const authService = {
-  login: (email, password) => 
-    supabase.auth.signInWithPassword({ email, password }),
-
-  register: (email, password) => 
-    supabase.auth.signUp({ email, password }),
-
-  resetPassword: (email) => 
-    supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/update-password`,
-    }),
-
-  loginWithGoogle: async () => {
-    return await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        // Redirige al usuario de vuelta a tu dashboard tras el login
-        redirectTo: window.location.origin, 
-      },
-    });
+  login(email, password) {
+    return authApi.signInWithPassword(email, password);
   },
 
-  logout: () => supabase.auth.signOut(),
+  register(email, password) {
+    return authApi.signUp(email, password);
+  },
 
-  onAuthStateChange: (callback) => 
-    supabase.auth.onAuthStateChange(callback),
+  resetPassword(email) {
+    return authApi.resetPasswordForEmail(
+      email,
+      `${window.location.origin}/update-password`,
+    );
+  },
 
-  getSession: () => supabase.auth.getSession(),
+  loginWithGoogle() {
+    return authApi.signInWithGoogle(window.location.origin);
+  },
+
+  logout() {
+    return authApi.signOut();
+  },
+
+  onAuthStateChange(callback) {
+    return authApi.onAuthStateChange(callback);
+  },
+
+  getSession() {
+    return authApi.getSession();
+  },
 };

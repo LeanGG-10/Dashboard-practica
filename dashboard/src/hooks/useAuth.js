@@ -35,7 +35,18 @@ export const useAuth = () => {
     const resetPassword = (email) => 
         executeAuthAction(() => authService.resetPassword(email), "Enlace enviado al correo.");
 
+    const loginWithGoogle = async () => {
+        setLoading(true);
+        setMessage(null);
+        const { error } = await authService.loginWithGoogle();
+        if (error) {
+            setMessage({ type: "error", text: error.message });
+            setLoading(false);
+        }
+        // Si no hay error, el navegador se redirige.
+    };
+
     const logout = () => executeAuthAction(() => authService.logout());
 
-    return { session, loading, setLoading, message, login, register, resetPassword, logout, setMessage };
+    return { session, loading, message, login, register, resetPassword, loginWithGoogle, logout, setMessage };
 };

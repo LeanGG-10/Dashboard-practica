@@ -1,4 +1,3 @@
-// src/test/supabase.test.js
 import { describe, it, expect, vi } from 'vitest';
 import { supabase } from '../supabaseClient';
 

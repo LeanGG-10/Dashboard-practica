@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { getStockPrice } from '../services/finanzasService';
+import { getStockPrice } from '../services/marketDataService';
 
-// 1. SIMULADOR DE MEMORIA REAL PARA LOCALSTORAGE
+// SIMULADOR DE MEMORIA REAL PARA LOCALSTORAGE
 // Esto asegura que getItem devuelva lo que setItem guardó
 const localStorageMock = (() => {
   let store = {};
@@ -16,14 +16,14 @@ const localStorageMock = (() => {
 // Reemplazamos el localStorage global con nuestro simulador
 Object.defineProperty(globalThis, 'localStorage', { value: localStorageMock });
 
-// 2. Mock global de fetch
+// Mock global de fetch
 globalThis.fetch = vi.fn();
 
 describe('FinanceService - Alpha Vantage API', () => {
   
   beforeEach(() => {
     vi.clearAllMocks(); 
-    localStorage.clear(); // Ahora esto sí limpia el 'store' interno
+    localStorage.clear(); // limpia el store interno
   });
 
   it('debe mapear correctamente los datos de la API a números (HU02)', async () => {
@@ -64,7 +64,7 @@ describe('FinanceService - Alpha Vantage API', () => {
 
     // Verificaciones:
     expect(result.price).toBe(500.25);
-    // ¡AHORA SÍ! Fetch no debe haber sido llamado porque el simulador devolvió el dato
+    // Fetch no debe haber sido llamado porque el simulador devolvió el dato
     expect(fetch).not.toHaveBeenCalled(); 
   });
 

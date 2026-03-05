@@ -1,14 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { triggerSnapshot } from '../apis/supabaseFunctions'; // Importa la función modular
-import { supabase } from '../supabaseClient'; // Importa el cliente único
+import { triggerSnapshot } from '../apis/supabaseFunctions'; 
+import { invokeSaveDailySnapshot } from '../apis/supabase/functionsApi';
 
-// Mock de las funciones de Supabase
-vi.mock('../supabaseClient', () => ({
-  supabase: {
-    functions: {
-      invoke: vi.fn(),
-    },
-  },
+vi.mock('../apis/supabase/functionsApi', () => ({
+  invokeSaveDailySnapshot: vi.fn(),
 }));
 
 describe('Pruebas de Snapshots (HU03/HU05)', () => {
@@ -19,20 +14,20 @@ describe('Pruebas de Snapshots (HU03/HU05)', () => {
 
   it('debe ejecutar exitosamente la Edge Function de snapshots', async () => {
     // Simulamos respuesta exitosa
-    supabase.functions.invoke.mockResolvedValue({
+    invokeSaveDailySnapshot.mockResolvedValue({
       data: { message: "Snapshot completado" },
       error: null
     });
 
     const result = await triggerSnapshot();
 
-    expect(supabase.functions.invoke).toHaveBeenCalledWith('save-daily-snapshot', expect.any(Object));
+    expect(invokeSaveDailySnapshot).toHaveBeenCalledTimes(1);
     expect(result.message).toBe("Snapshot completado");
   });
 
   it('debe capturar errores de la Edge Function', async () => {
     // Simulamos un error de la función
-    supabase.functions.invoke.mockResolvedValue({
+    invokeSaveDailySnapshot.mockResolvedValue({
       data: null,
       error: { message: "Error interno del servidor" }
     });
