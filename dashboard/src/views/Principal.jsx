@@ -1,32 +1,20 @@
 import { useNavigate } from "react-router-dom";
-
+import imagen from "../assets/foto.png";
 // }
 //Falta pulir detalles porque está de prueba
 const TEAM = [
   {
-    name: "Valeria Torres",
-    role: "Lead Developer",
-    initials: "VT",
+    name: "Leonardo González",
+    role: "Full-Stack Developer",
+    initials: "LG",
     color: "#c9a84c",
   },
   {
-    name: "Sebastián Ruiz",
-    role: "UI/UX Designer",
-    initials: "SR",
+    name: "Anthony García",
+    role: "Full-Stack Developer",
+    initials: "AG",
     color: "#6e9e7c",
-  },
-  {
-    name: "Camila Flores",
-    role: "Backend Engineer",
-    initials: "CF",
-    color: "#7a8cbf",
-  },
-  {
-    name: "Andrés Mora",
-    role: "Data Analyst",
-    initials: "AM",
-    color: "#b56e6e",
-  },
+  }
 ];
 
 const FEATURES = [
@@ -241,17 +229,13 @@ export default function App() {
           height: "64px",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <polygon points="14,2 26,9 26,23 14,26 2,23 2,9" stroke="#c9a84c" strokeWidth="1.5" fill="none" />
-            <polygon points="14,7 21,11 21,20 14,23 7,20 7,11" fill="#c9a84c" opacity="0.2" />
-            <line x1="14" y1="2" x2="14" y2="26" stroke="#c9a84c" strokeWidth="1" opacity="0.5" />
-            <line x1="2" y1="9" x2="26" y2="23" stroke="#c9a84c" strokeWidth="1" opacity="0.3" />
-            <line x1="26" y1="9" x2="2" y2="23" stroke="#c9a84c" strokeWidth="1" opacity="0.3" />
-          </svg>
-          <span style={{ fontSize: "18px", letterSpacing: "0.05em" }}>
-            <span className="gold">Analizar Portafolio</span>
-          </span>
+        <div className="flex items-center gap-5">
+          <img src={imagen} alt="Logo" style={{ width: 82, height: 52 }} />
+          <div style={{ display: "flex", gap: "12px" }}>
+            <span style={{ fontSize: "18px", letterSpacing: "0.05em" }}>
+              <span className="gold">Analizar Portafolio</span>
+            </span>
+          </div>
         </div>
 
         {/* En un futuro puede servir por ahora no*/}
@@ -345,8 +329,7 @@ export default function App() {
             </h2>
             <div className="divider-line" />
             <p className="sans" style={{ fontSize: "15px", color: "#7a7268", lineHeight: "1.8", fontWeight: 300, maxWidth: "380px" }}>
-              AUXIS centraliza la información de mercado y tus posiciones
-              en un panel limpio, profesional y completamente personalizable.
+              Usamos un panel para que puedas analizar los cambios de tus inversiones.
             </p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
@@ -384,7 +367,7 @@ export default function App() {
             <div style={{ width: "40px", height: "1px", background: "#c9a84c", margin: "20px auto 0" }} />
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "100px" }}>
             {TEAM.map((member) => (
               <div key={member.name} className="team-card">
                 <div
@@ -435,9 +418,6 @@ export default function App() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ fontSize: "16px", letterSpacing: "0.05em" }}>
-            <span className="gold">AUX</span>IS
-          </span>
           <span className="sans" style={{ fontSize: "12px", color: "#3a3530" }}>
             © 2026 · Dashboard Financiero
           </span>

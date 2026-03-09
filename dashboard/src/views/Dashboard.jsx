@@ -32,7 +32,7 @@ export default function DashboardPage() {
   const handleLogout = () => {
     console.log("Logout clicked test");
     logout();
-  }
+  };
   useEffect(() => {
     if (!session?.user?.id) return;
     loadPortfolio(session.user.id);
@@ -138,22 +138,23 @@ export default function DashboardPage() {
                 {formatCurrency(totalGain)}
               </span>
             </div>
-            <button 
-              onClick={handleLogout} 
+            <button
+              onClick={handleLogout}
               className="group flex items-center gap-2 px-3 py-2 border border-zinc-800 rounded-lg hover:bg-zinc-900 hover:border-zinc-700 transition-all cursor-pointer"
             >
               <span className="text-zinc-500 group-hover:text-red-400 text-[10px] font-mono uppercase tracking-tight">
                 Cerrar Sesión
               </span>
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                width="14" height="14" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className="text-zinc-600 group-hover:text-red-400"
               >
                 <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
@@ -184,9 +185,7 @@ export default function DashboardPage() {
           {stocks.length === 0 ? (
             <div className="text-center text-zinc-500 py-12">
               <p className="text-lg mb-2">No hay activos en tu cartera</p>
-              <p className="text-sm">
-                Agrega activos para verlos aquí
-              </p>
+              <p className="text-sm">Agrega activos para verlos aquí</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -200,4 +199,3 @@ export default function DashboardPage() {
     </>
   );
 }
-
